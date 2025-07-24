@@ -69,7 +69,7 @@ final class HtmlReportMergerTest extends TestCase
     public function testRunWithCodeception5Reports(): void
     {
         $expectedTimeInSeconds = '03:34.98';
-        $expectedSuccess= 3;
+        $expectedSuccess = 3;
 
         $reportPath = TEST_PATH . '/fixtures/reports/html/';
         $task = new HtmlReportMerger();
@@ -117,7 +117,7 @@ final class HtmlReportMergerTest extends TestCase
     public function testRunMaxTimeReports(): void
     {
         $expectedTime = '129.25';
-        $expectedSuccess= 3;
+        $expectedSuccess = 3;
 
         $reportPath = TEST_PATH . '/fixtures/reports/html/';
         $task = new HtmlReportMerger();
@@ -169,7 +169,7 @@ final class HtmlReportMergerTest extends TestCase
     public function testRunMaxTimeWithCodeception5Reports(): void
     {
         $expectedTime = '02:09.25';
-        $expectedSuccess= 3;
+        $expectedSuccess = 3;
 
         $reportPath = TEST_PATH . '/fixtures/reports/html/';
         $task = new HtmlReportMerger();

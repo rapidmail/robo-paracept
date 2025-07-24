@@ -91,7 +91,7 @@ final class GroupFilterTest extends TestCase
         $task = new GroupFilter();
         $task->groupIncluded('foo');
         $this->expectException(InvalidArgumentException::class);
-        $this->expectErrorMessageMatches(
+        $this->expectExceptionMessageMatches(
             '/^You can mark group "\w+" only as included OR excluded.$/'
         );
         $task->groupExcluded('foo');
@@ -105,7 +105,7 @@ final class GroupFilterTest extends TestCase
     {
         $task = (new GroupFilter())->groupExcluded('bar');
         $this->expectException(InvalidArgumentException::class);
-        $this->expectErrorMessageMatches(
+        $this->expectExceptionMessageMatches(
             '/^You can mark group "\w+" only as included OR excluded.$/'
         );
         $task->groupIncluded('bar');
@@ -117,7 +117,7 @@ final class GroupFilterTest extends TestCase
     public function testFilterWithCestFiles(): void
     {
         $loader = new TestLoader(['path' => TEST_PATH . '/fixtures/Cests']);
-        $loader->loadTests(TEST_PATH . '/fixtures/Cests');
+        $loader->loadTests();
 
         $tests = $loader->getTests();
         $this->assertCount(3, $tests);
@@ -146,7 +146,7 @@ final class GroupFilterTest extends TestCase
     public function testFilterWithUnitTests(): void
     {
         $loader = new TestLoader(['path' => TEST_PATH . '/fixtures/Unit']);
-        $loader->loadTests(TEST_PATH . '/fixtures/Unit');
+        $loader->loadTests();
 
         $tests = $loader->getTests();
         $this->assertCount(4, $tests);

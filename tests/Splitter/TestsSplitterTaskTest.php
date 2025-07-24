@@ -34,13 +34,13 @@ final class TestsSplitterTaskTest extends TestCase
             ->willReturn(false);
 
         $this->expectException(TaskException::class);
-        $this->expectErrorMessage(
+        $this->expectExceptionMessage(
             'This task requires Codeception to be loaded. Please require autoload.php of Codeception'
         );
         $service->run();
     }
 
-    public function providerTestLoadTestsWithDifferentPatterns(): array
+    public static function providerTestLoadTestsWithDifferentPatterns(): array
     {
         return [
             'Cests' => [

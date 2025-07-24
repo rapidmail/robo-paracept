@@ -6,6 +6,7 @@ namespace Tests\Codeception\Task\Extension;
 
 use Codeception\Event\FailEvent;
 use Codeception\Task\Extension\FailedTestsReporter;
+use MichaelPetri\PhpunitConsecutiveArguments\ConsecutiveArguments;
 use PHPUnit\Framework\TestCase;
 use SplFileInfo;
 use Symfony\Component\Finder\Finder;
@@ -57,12 +58,14 @@ final class FailedTestsReporterTest extends TestCase
         // get test name by the TestEventMock
         $reporter
             ->method('getTestName')
-            ->withConsecutive(
-                ...array_map(
-                    static function (FailEvent $event): array {
-                        return [$event];
-                    },
-                    array_column($testEvents, 'mock')
+            ->with(
+                ...ConsecutiveArguments::of(
+                    ...array_map(
+                        static function (FailEvent $event): array {
+                            return [$event];
+                        },
+                        array_column($testEvents, 'mock')
+                    )
                 )
             )
             ->willReturnOnConsecutiveCalls(...array_column($testEvents, 'testName'));
